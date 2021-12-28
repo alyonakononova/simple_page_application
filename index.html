@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        main > div {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <menu>
+        <li onclick="changePage(this, 'posts')">Posts</li>
+        <li onclick="changePage(this, 'users')">Users</li>
+        <li onclick="changePage(this, 'todos')">ToDos</li>
+    </menu>
+    <main>
+        <div id="posts">Posts</div>
+        <div id="users">Users</div>
+        <div id="todos">ToDos</div>
+    </main>
+    <script>
+        function changePage(element, pageName){
+            const div = document.querySelectorAll('main > div');
+            div.forEach(element => element.style.display = 'none');
+            
+            const pageContent = document.querySelector(`#${pageName}`);
+            pageContent.style.display = 'block';
+        }
+    </script>
+</body>
+
+</html>
