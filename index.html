@@ -6,12 +6,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
+        * {
+            box-sizing: border-box;
+        }
         main > div {
             display: none;
         }
 
         menu {
             background-color: cyan;
+            display: flex;
+            padding: 0;
+        }
+        .menu_elements {
+            width: 200px;
+            height: 30px;
+            border: 1px solid black;
+            margin: 10px;
+            padding: 5px;
+            text-align: center;
+        }
+
+        .menu_elements:hover {
+            background-color: rgb(31, 216, 216);
+            cursor: pointer;
         }
 
         section > div {
@@ -25,13 +43,17 @@
             border: 1px solid grey;
             margin: 0 5px;
         }
+        .pagination span:hover {
+            background-color: rgb(143, 142, 142);
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
     <menu>
-        <li onclick="changeMainPage(this, 'posts')">Posts</li>
-        <li onclick="changeMainPage(this, 'users')">Users</li>
-        <li onclick="changeMainPage(this, 'todos')">ToDos</li>
+        <div class="menu_elements" onclick="changeMainPage(this, 'posts')">Posts</div>
+        <div class="menu_elements" onclick="changeMainPage(this, 'users')">Users</div>
+        <div class="menu_elements" onclick="changeMainPage(this, 'todos')">ToDos</div>
     </menu>
     <main>
         <div id="posts">
