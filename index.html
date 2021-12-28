@@ -52,12 +52,21 @@
             const data = await response.json();
 
             let elementHtmlRendered = '';
-            data.slice(0,3).forEach(element => {
-                const elementHtml =
-                    `<div>
+            data.forEach(element => {
+                let elementHtml;
+                if (pageName === 'posts' || pageName === 'todos') {
+                    elementHtml =
+                        `<div>
                         id: ${element.id} <br>
                         title: ${element.title}
                     </div>`;
+                } else if (pageName === 'users') {
+                    elementHtml =
+                        `<div>
+                            id: ${element.id} <br>
+                            name: ${element.name}
+                        </div>`;
+                };
                 elementHtmlRendered += elementHtml;
             });
             pageContent.querySelector('section').innerHTML = elementHtmlRendered;
