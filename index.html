@@ -58,6 +58,8 @@
     <main>
         <div id="posts">
             <h3>Posts</h3>
+            <input id="search" type="text" placeholder="type to filter">
+            <br><br>
             <section></section>
             <div class="pagination"></div>
         </div>
@@ -79,17 +81,26 @@
         let globalPageName = '';
         let currentPage = 0;
 
+        document.querySelector('#search').addEventListener('keyup', function updateValue(e) {
+            const searchParam = e.target.value.toLowerCase();
+            const filteredElements = elements.filter(el => el.title.toLowerCase().includes(searchParam));
+            renderContent(filteredElements)
+            
+        });
+
         function changePageNumber(element) {
             currentPage = Number(element.textContent) - 1;
             renderContent();
         }
 
-        function renderContent() {
+        function renderContent(filteredElements) {
+
+            elementToRender = filteredElements || elements;
 
             let elementHtmlRendered = '';
             const startPageFrom = currentPage * elementsPerPage;
 
-            elements.slice(startPageFrom, startPageFrom + elementsPerPage).forEach(element => {
+            elementToRender.slice(startPageFrom, startPageFrom + elementsPerPage).forEach(element => {
                 let elementHtml;
                 if (globalPageName === 'posts' || globalPageName === 'todos') {
                     elementHtml =
@@ -123,7 +134,7 @@
 
             renderPagination();
 
-            renderContent(pageContent)
+            renderContent()
            
         }
 
@@ -135,6 +146,7 @@
                 pagination.innerHTML += `<span onclick="changePageNumber(this)" >${i}</span>`;
             }
         }
+
     </script>
 </body>
 
